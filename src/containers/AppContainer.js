@@ -56,9 +56,11 @@ const AppContainer = ({ children, classes }) => (
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" noWrap>
-            Firebase Tools
-          </Typography>
+          <Link to="/dashboard" className={classes.link}>
+            <Typography variant="h6" noWrap>
+              Firebase Tools
+            </Typography>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
