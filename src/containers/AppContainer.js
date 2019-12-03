@@ -11,8 +11,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import { Link } from 'react-router-dom';
 import Notification from '../components/NotificationSnackbar';
 import routes from '../sidebar.routes.json';
 
@@ -45,6 +44,10 @@ const styles = (theme) => ({
   icons: {
     fontSize: 18,
   },
+  link: {
+    textDecoration: 'none',
+    color: 'inherit',
+  },
 });
 
 const AppContainer = ({ children, classes }) => (
@@ -68,13 +71,15 @@ const AppContainer = ({ children, classes }) => (
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {routes.map((route, index) => (
-              <ListItem button key={route}>
-                <ListItemIcon>
-                  <span className={`${classes.icons} ${route.icon}`} />
-                </ListItemIcon>
-                <ListItemText primary={route.lable} />
-              </ListItem>
+            {routes.map((route) => (
+              <Link to={route.link} className={classes.link}>
+                <ListItem button key={route}>
+                  <ListItemIcon>
+                    <span className={`${classes.icons} ${route.icon}`} />
+                  </ListItemIcon>
+                  <ListItemText primary={route.lable} />
+                </ListItem>
+              </Link>
             ))}
           </List>
         </div>
