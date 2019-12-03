@@ -14,6 +14,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Notification from '../components/NotificationSnackbar';
+import routes from '../sidebar.routes.json';
 
 const drawerWidth = 240;
 
@@ -41,6 +42,9 @@ const styles = (theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  icons: {
+    fontSize: 18,
+  },
 });
 
 const AppContainer = ({ children, classes }) => (
@@ -64,10 +68,12 @@ const AppContainer = ({ children, classes }) => (
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+            {routes.map((route, index) => (
+              <ListItem button key={route}>
+                <ListItemIcon>
+                  <span className={`${classes.icons} ${route.icon}`} />
+                </ListItemIcon>
+                <ListItemText primary={route.lable} />
               </ListItem>
             ))}
           </List>
