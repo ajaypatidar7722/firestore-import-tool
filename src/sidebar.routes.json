@@ -1,0 +1,16 @@
+[
+    {
+        "lable": "Import File",
+        "icon": "lnr lnr-enter-down",
+        "link": "/import",
+        "hideItem": false,
+        "onClick": false
+    },
+    {
+        "lable": "Show List",
+        "icon": "lnr lnr-layers",
+        "link": "/list",
+        "hideItem": false,
+        "onClick": false
+    }
+]
