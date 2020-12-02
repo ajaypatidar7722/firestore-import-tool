@@ -1,7 +1,16 @@
 import firebase from 'firebase';
 import 'firebase/firestore';
 
-const firebaseConfig = null;
+const parseConfig = () => {
+  try {
+    return JSON.parse(process.env.REACT_APP_FIREBASE_CONFIG);
+  } catch (error) {
+    console.error(error.stack || error.message);
+    throw new Error('Can not parse firebase config!')
+  }
+};
+
+const firebaseConfig = parseConfig();
 
 if (!firebaseConfig) {
   throw new Error('Firebase config not set');
