@@ -25,7 +25,7 @@ class Home extends Component {
       },
       transform: (value) => {
         if (!value) {
-          return '';
+          return "";
         }
 
         return value;
@@ -42,18 +42,27 @@ class Home extends Component {
   render() {
     // const { headings } = this.state;
     const { handleSubmit, csvData } = this.props;
-    const headings = Object.keys(csvData[0] || {}).map((key) => ({ key, label: key, value: key }));
+    const headings = Object.keys(csvData[0] || {}).map((key) => ({
+      key,
+      label: key,
+      value: key,
+    }));
     const options = [
       ...headings,
       {
-        label: 'Random String',
-        value: 'random',
+        label: "Random String",
+        value: "random",
       },
     ];
 
     return (
       <Box p={2}>
-        <input type="file" onChange={this.hanldeFileChange} accept=".csv" ref={this.fileRef} />
+        <input
+          type="file"
+          onChange={this.hanldeFileChange}
+          accept=".csv"
+          ref={this.fileRef}
+        />
         {Boolean(csvData.length) && (
           <>
             <Box p={2}>
@@ -62,11 +71,15 @@ class Home extends Component {
             <Form onSubmit={handleSubmit}>
               <Box p={1}>
                 <FormLabel>Select Id Field</FormLabel>
-                <Select name="idField" options={options} placeholder="Select an id feild" />
+                <Select
+                  name="idField"
+                  options={options}
+                  placeholder="Select an id feild"
+                />
               </Box>
               <Box p={1} marginBottom={2}>
                 <FormLabel>Collection Path</FormLabel>
-                <TextField name="path" placeholder="Select an id feild" />
+                <TextField name="path" placeholder="Type a collection path" />
               </Box>
               <SubmitButton>Proceed</SubmitButton>
             </Form>
@@ -103,11 +116,7 @@ const formConnected = reduxForm({
     return errors;
   },
   onSubmit: (formValues, action, props) => {
-    props.startImport(
-      formValues.idField,
-      formValues.path,
-      props.csvData,
-    );
+    props.startImport(formValues.idField, formValues.path, props.csvData);
   },
 })(Home);
 
