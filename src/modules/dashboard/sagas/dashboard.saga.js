@@ -8,15 +8,15 @@ function* startImport(action) {
   const collectionRef = db.collection(path);
 
   try {
-    yield put(showNotification('Started writing records', 'primary'));
+    yield put(showNotification('Started writing records', 'info'));
     const promises = idField === 'random'
       ? csvData.map((doc) => collectionRef.add(doc))
       : csvData.map((doc) => collectionRef.doc(doc[idField].toString()).set(doc));
     yield Promise.all(promises);
-    yield put(showNotification('Done writing records', 'primary'));
+    yield put(showNotification('Done writing records', 'success'));
     yield put(resetCsvData());
   } catch (error) {
-    yield put(showNotification('Error writing records'));
+    yield put(showNotification('Error writing records', 'error'));
     console.log('==========error==========', error);
   }
 }
